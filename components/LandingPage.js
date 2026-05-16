@@ -29,6 +29,7 @@ import {
   XCircle,
   X,
 } from "lucide-react";
+import CalInlineEmbed from "./CalInlineEmbed";
 
 const navItems = [
   ["Why it Breaks", "#why-it-breaks"],
@@ -707,6 +708,9 @@ function FinalCTA() {
               15-minute diagnostic call
             </p>
           </div>
+        </div>
+        <div className="mt-10">
+          <CalInlineEmbed />
         </div>
       </SectionShell>
     </section>
