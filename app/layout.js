@@ -8,6 +8,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+      </head>
       <body>{children}</body>
     </html>
   );

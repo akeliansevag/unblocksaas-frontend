@@ -29,7 +29,8 @@ import {
   XCircle,
   X,
 } from "lucide-react";
-import CalInlineEmbed from "./CalInlineEmbed";
+import CalendlyScriptLoader from "./CalendlyScriptLoader";
+import useCalendlyPopup from "./useCalendlyPopup";
 
 const navItems = [
   ["Why it Breaks", "#why-it-breaks"],
@@ -229,7 +230,7 @@ function BulletList({ items, tone = "blue", className = "" }) {
   );
 }
 
-function Header() {
+function Header({ onBookCall }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("why-it-breaks");
 
@@ -282,7 +283,7 @@ function Header() {
             </a>
           ))}
         </nav>
-        <PrimaryButton className="hidden px-6 py-3 lg:inline-flex" href="#book-call">
+        <PrimaryButton className="hidden px-6 py-3 lg:inline-flex" href="#book-call" onClick={onBookCall}>
           Book Your Call
         </PrimaryButton>
         <button
@@ -315,7 +316,10 @@ function Header() {
             <PrimaryButton
               className="mt-4 w-full py-3"
               href="#book-call"
-              onClick={() => setMenuOpen(false)}
+              onClick={(event) => {
+                setMenuOpen(false);
+                onBookCall(event);
+              }}
             >
               Book Your Call
             </PrimaryButton>
@@ -326,7 +330,7 @@ function Header() {
   );
 }
 
-function Hero() {
+function Hero({ onBookCall }) {
   return (
     <section id="top" className="bg-white pb-12 pt-10 sm:pb-14 lg:pt-11">
       <SectionShell>
@@ -365,7 +369,7 @@ function Hero() {
                 </div>
               </div>
               <div>
-                <PrimaryButton className="w-full sm:w-auto" href="#book-call">
+                <PrimaryButton className="w-full sm:w-auto" href="#book-call" onClick={onBookCall}>
                   Book Your Free Fit Call
                 </PrimaryButton>
                 <div className="mt-4 flex items-start gap-2 text-xs leading-5 text-slate-500">
@@ -669,7 +673,7 @@ function InvestmentSection() {
   );
 }
 
-function FinalCTA() {
+function FinalCTA({ bookingMessage, onBookCall }) {
   return (
     <section id="book-call" className="bg-[#071e43] py-12 text-white sm:py-14">
       <SectionShell>
@@ -699,9 +703,14 @@ function FinalCTA() {
             </div>
           </div>
           <div className="text-left lg:text-center">
-            <PrimaryButton className="w-full max-w-[280px] bg-blue-500 py-4 text-base hover:bg-blue-400" href="#book-call">
+            <PrimaryButton className="w-full max-w-[280px] bg-blue-500 py-4 text-base hover:bg-blue-400" href="#book-call" onClick={onBookCall}>
               Book Your Free Call
             </PrimaryButton>
+            {bookingMessage ? (
+              <p className="mx-auto mt-4 max-w-[320px] rounded-lg border border-blue-300/30 bg-white/10 px-4 py-3 text-sm font-semibold leading-5 text-blue-50">
+                {bookingMessage}
+              </p>
+            ) : null}
             <p className="mt-5 text-sm font-extrabold text-white">No pressure. No obligation.</p>
             <p className="mt-2 flex items-center gap-2 text-sm text-blue-100 lg:justify-center">
               <Sparkles className="h-4 w-4 text-blue-400" />
@@ -709,24 +718,24 @@ function FinalCTA() {
             </p>
           </div>
         </div>
-        <div className="mt-10">
-          <CalInlineEmbed />
-        </div>
       </SectionShell>
     </section>
   );
 }
 
 export default function LandingPage() {
+  const { bookingMessage, openCalendlyPopup } = useCalendlyPopup();
+
   return (
     <main>
-      <Header />
-      <Hero />
+      <CalendlyScriptLoader />
+      <Header onBookCall={openCalendlyPopup} />
+      <Hero onBookCall={openCalendlyPopup} />
       <FamiliarSection />
       <OfferSection />
       <CredibilitySection />
       <InvestmentSection />
-      <FinalCTA />
+      <FinalCTA bookingMessage={bookingMessage} onBookCall={openCalendlyPopup} />
     </main>
   );
 }
