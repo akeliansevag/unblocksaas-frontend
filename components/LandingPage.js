@@ -11,6 +11,7 @@ import {
   ChevronDown,
   ChevronUp,
   Clock3,
+  CircleStar,
   Gauge,
   Handshake,
   Menu,
@@ -22,6 +23,7 @@ import {
   ShieldCheck,
   SlidersHorizontal,
   Sparkles,
+  Star,
   Target,
   Trophy,
   UserRound,
@@ -154,19 +156,19 @@ const investmentCards = [
     title: "FOR USD 2,500 YOU GET:",
     tone: "blue",
     items: [
-      "Executive-level GTM diagnosis",
-      "Clear revenue constraints",
-      "Focused action plan",
-      "Clarity before committing more resources",
+      { text: "Executive-level GTM diagnosis", icon: CheckCircle2 },
+      { text: "Clear revenue constraints", icon: CheckCircle2 },
+      { text: "Focused action plan", icon: CheckCircle2 },
+      { text: "Clarity before committing more resources", icon: CheckCircle2 },
     ],
   },
   {
     title: "COMPARED TO ALTERNATIVES:",
     tone: "amber",
     items: [
-      "Cheaper than one wrong hire",
-      "Faster than months of trial and error",
-      "Less waste than misdirected ad spend",
+      { text: "Cheaper than one wrong hire", icon: CircleStar },
+      { text: "Faster than months of trial and error", icon: CircleStar },
+      { text: "Less waste than misdirected ad spend", icon: CircleStar },
     ],
     note: "One better sales quarter can justify this investment.",
   },
@@ -174,17 +176,17 @@ const investmentCards = [
     title: "WHY THIS APPROACH WORKS:",
     tone: "green",
     items: [
-      "Avoids scaling broken systems",
-      "Improves conversion without increasing spend",
-      "Aligns team execution",
-      "Creates clarity before major decisions",
+      { text: "Avoids scaling broken systems", icon: CheckCircle2 },
+      { text: "Improves conversion without increasing spend", icon: CheckCircle2 },
+      { text: "Aligns team execution", icon: CheckCircle2 },
+      { text: "Creates clarity before major decisions", icon: CheckCircle2 },
     ],
   },
 ];
 
 function Badge({ children }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.02em] text-blue-600">
+    <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-sm font-semibold uppercase tracking-[0.02em] text-blue-600">
       {children}
     </span>
   );
@@ -195,7 +197,7 @@ function PrimaryButton({ children, href = "#book-call", className = "", onClick 
     <a
       href={href}
       onClick={onClick}
-      className={`inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-bold text-white shadow-[0_12px_24px_rgba(37,99,235,0.22)] transition hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-[0_16px_30px_rgba(37,99,235,0.28)] ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-regular text-white shadow-[0_12px_24px_rgba(37,99,235,0.22)] transition hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-[0_16px_30px_rgba(37,99,235,0.28)] ${className}`}
     >
       {children}
       <ArrowRight className="h-4 w-4" />
@@ -205,7 +207,7 @@ function PrimaryButton({ children, href = "#book-call", className = "", onClick 
 
 function SectionShell({ children, className = "" }) {
   return (
-    <div className={`mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12 ${className}`}>
+    <div className={`mx-auto w-full max-w-screen-2xl px-5 sm:px-8 lg:px-12 ${className}`}>
       {children}
     </div>
   );
@@ -220,12 +222,18 @@ function BulletList({ items, tone = "blue", className = "" }) {
 
   return (
     <ul className={`space-y-3 text-sm text-slate-700 ${className}`}>
-      {items.map((item) => (
-        <li key={item} className="flex gap-2.5 leading-relaxed">
-          <CheckCircle2 className={`mt-0.5 h-4 w-4 shrink-0 ${tones[tone]}`} />
-          <span>{item}</span>
-        </li>
-      ))}
+      {items.map((item, idx) => {
+        const text = typeof item === "string" ? item : item.text;
+        const Icon =
+          typeof item === "object" && item.icon ? item.icon : CheckCircle2;
+
+        return (
+          <li key={text ?? idx} className="flex gap-2.5 leading-relaxed">
+            <Icon className={`mt-0.5 h-4 w-4 shrink-0 ${tones[tone]}`} />
+            <span>{text}</span>
+          </li>
+        );
+      })}
     </ul>
   );
 }
@@ -272,7 +280,7 @@ function Header({ onBookCall }) {
         <a href="#top" className="text-2xl font-black tracking-tight text-navy sm:text-3xl">
           Unblock<span className="text-blue-600">SaaS</span>
         </a>
-        <nav className="hidden items-center gap-9 text-sm font-semibold text-slate-600 lg:flex">
+        <nav className="hidden items-center gap-9 text-sm font-regular text-slate-600 lg:flex">
           {navItems.map(([label, href]) => (
             <a
               key={label}
@@ -340,9 +348,9 @@ function Hero({ onBookCall }) {
               <Clock3 className="h-3.5 w-3.5" />
               3-Day Revenue Diagnostic
             </Badge>
-            <h1 className="mt-8 text-4xl font-black leading-[1.08] tracking-normal text-ink sm:text-5xl lg:text-[42px] xl:text-[44px]">
+            <h1 className="mt-8 text-4xl font-bold leading-[1.08] tracking-normal text-ink sm:text-5xl lg:text-[42px] xl:text-[44px]">
               Your Pipeline Looks Active
-              <span className="block text-blue-600">Your Revenue Doesn&apos;t</span>
+              <span className="block text-blue-600 mt-2">Your Revenue Doesn&apos;t</span>
             </h1>
             <p className="mt-9 max-w-[610px] text-lg font-medium leading-8 text-slate-700">
               Most B2B SaaS teams don&apos;t have an activity problem.
@@ -350,7 +358,7 @@ function Hero({ onBookCall }) {
             </p>
             <ul className="mt-6 space-y-4 text-sm text-slate-600">
               {heroChecks.map((item, index) => (
-                <li key={`${item}-${index}`} className="flex items-start gap-3">
+                <li key={`${item}-${index}`} className="flex lg:items-center gap-3">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
                   <span>{item}</span>
                 </li>
@@ -362,8 +370,8 @@ function Hero({ onBookCall }) {
                   <ShieldCheck className="h-6 w-6" />
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-slate-700">Fixed-price diagnostic</p>
-                  <p className="text-2xl font-black leading-tight text-ink">USD 2,500</p>
+                  <p className="text-xs font-medium text-slate-700">Fixed-price diagnostic</p>
+                  <p className="text-2xl font-semibold leading-tight text-ink">USD 2,500</p>
                   <p className="text-xs leading-5 text-slate-500">3 focused days</p>
                   <p className="text-xs leading-5 text-slate-500">No open-ended consulting scope.</p>
                 </div>
@@ -401,7 +409,7 @@ function FamiliarSection() {
       <SectionShell>
         <div className="grid gap-8 lg:grid-cols-[255px_1fr] lg:gap-8">
           <div>
-            <h2 className="text-3xl font-black leading-tight text-navy">
+            <h2 className="text-3xl font-semibold leading-tight text-navy">
               Revenue
               <span className="block">Shouldn&apos;t Feel</span>
               <span className="block">This Hard</span>
@@ -413,7 +421,7 @@ function FamiliarSection() {
               <span className="block">But revenue still feels harder than it should.</span>
               <span className="mt-2 block">Usually this is not a lead problem. It&apos;s a conversion system problem.</span>
             </p>
-            <p className="mt-6 max-w-[250px] text-sm font-extrabold leading-5 text-blue-600">
+            <p className="mt-6 max-w-[250px] text-sm font-semibold leading-5 text-blue-600">
               Most founders feel this long before they can clearly explain it.
             </p>
           </div>
@@ -428,13 +436,34 @@ function FamiliarSection() {
                   className="flex min-h-[118px] flex-col items-center justify-center rounded-xl border border-blue-500/70 bg-white px-4 py-4 text-center shadow-sm transition hover:-translate-y-1 hover:border-blue-600 hover:shadow-card"
                 >
                   <Icon className="mb-3 h-6 w-6 text-blue-600" />
-                  <p className="text-xs font-medium leading-4 text-slate-700">{text}</p>
+                  <p className="text-xs leading-4 text-slate-700">{text}</p>
                 </div>
               ))}
             </div>
-            <div className="mt-6 rounded-xl bg-navy px-5 py-8 text-center text-white shadow-card [background-image:radial-gradient(rgba(255,255,255,0.2)_1px,transparent_1px)] [background-size:18px_18px]">
-              <p className="text-sm text-blue-100">You are not lacking activity.</p>
-              <p className="mt-1 text-lg font-black">You are lacking clarity on what&apos;s blocking conversion.</p>
+            <div className="relative mt-6 overflow-hidden rounded-xl px-5 py-8 text-center text-white shadow-card">
+              {/* Video background */}
+              <video
+                className="absolute inset-0 h-full w-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+              >
+                <source src="/videos/video-1.mp4" type="video/mp4" />
+              </video>
+
+              {/* Dark overlay for readability */}
+              {/* <div className="absolute inset-0 bg-navy/80" /> */}
+
+              {/* Content */}
+              <div className="relative">
+                <p className="text-sm font-medium text-blue-100">
+                  You are not lacking activity.
+                </p>
+                <p className="mt-1 text-lg font-black">
+                  You are lacking clarity on what&apos;s blocking conversion.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -459,29 +488,43 @@ function OfferCard({ title, items, icon }) {
 
 function TimelineCard({ item, index, expanded }) {
   return (
-    <article className="relative z-10 rounded-xl border border-blue-300 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-card">
-      <div className="mb-3 flex items-center gap-3">
-        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-base font-black text-white">
-          {index + 1}
-        </span>
-        <h3 className="text-lg font-black text-ink">{item.day}</h3>
-      </div>
-      <p className="mb-5 text-base font-medium text-ink">{item.title}</p>
-      {expanded ? (
-        <ul className="mb-6 space-y-3 text-sm text-slate-700">
-          {item.items.map(([text, Icon]) => (
-            <li key={text} className="flex items-start gap-3 leading-6">
-              <Icon className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
-              <span>{text}</span>
-            </li>
-          ))}
-        </ul>
-      ) : null}
-      <div className="flex items-center gap-3 rounded-md bg-blue-50 px-4 py-3 text-sm font-extrabold leading-5 text-blue-600">
-        <Search className="h-5 w-5 shrink-0" />
-        <span>Outcome: {item.outcome}</span>
-      </div>
-    </article>
+    <div className="rounded-xl p-[1px] bg-[linear-gradient(138.81deg,#E2E8F0_26.66%,#125CF7_111.39%)] h-full">
+      <article className="relative z-10 rounded-xl bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-card h-full">
+        
+        <div className="mb-3 flex items-center gap-3">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-base font-black text-white">
+            {index + 1}
+          </span>
+          <h3 className="text-lg font-bold text-ink">{item.day}</h3>
+        </div>
+
+        <p className="mb-5 text-base text-ink">{item.title}</p>
+
+        <div
+          className={`
+            grid transition-all duration-300 ease-in-out
+            ${expanded ? "grid-rows-[1fr] opacity-100 mt-5" : "grid-rows-[0fr] opacity-0 mt-0"}
+          `}
+        >
+          <div className="overflow-hidden">
+            <ul className="space-y-3 text-sm text-slate-700">
+              {item.items.map(([text, Icon]) => (
+                <li key={text} className="flex items-start gap-3 leading-6">
+                  <Icon className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-4 flex items-center gap-3 rounded-md bg-blue-50 px-4 py-3 text-sm font-semibold leading-5 text-blue-600">
+          <Search className="h-5 w-5 shrink-0" />
+          <span>Outcome: {item.outcome}</span>
+        </div>
+
+      </article>
+    </div>
   );
 }
 
@@ -494,7 +537,7 @@ function OfferSection() {
         <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-14">
           <div>
             <Badge>The Offer</Badge>
-            <h2 className="mt-6 max-w-[500px] text-3xl font-black leading-tight text-ink sm:text-[32px]">
+            <h2 className="mt-6 max-w-[500px] text-3xl font-semibold leading-tight text-ink sm:text-[32px]">
               A Focused 3-Day Diagnostic
               <span className="block">to Fix What&apos;s Blocking Revenue</span>
             </h2>
@@ -515,7 +558,7 @@ function OfferSection() {
           <button
             type="button"
             onClick={() => setExpanded((value) => !value)}
-            className="mx-auto mt-8 flex items-center gap-2 text-base font-semibold text-blue-600 transition hover:text-blue-800"
+            className="mx-auto mt-8 flex items-center gap-2 text-base font-medium text-blue-600 transition hover:text-blue-800"
             aria-expanded={expanded}
           >
             Detailed breakdown
@@ -532,11 +575,11 @@ function CredibilitySection() {
 
   return (
     <section id="results" className="overflow-hidden bg-slate-100 py-12 sm:py-14">
-      <div className="w-full pl-5 pr-0 sm:pl-8 lg:pl-[max(3rem,calc((100vw-1280px)/2+3rem))]">
-        <div className="grid gap-10 pr-5 sm:pr-8 lg:grid-cols-[0.86fr_1.05fr_1.12fr] lg:gap-9 lg:pr-0">
+      <div className="w-full pl-5 pr-0 sm:pl-8 lg:pl-[max(3rem,calc((100vw-1536px)/2+3rem))]">
+        <div className="grid gap-10 pr-0 lg:grid-cols-[0.86fr_1.05fr_1.12fr] lg:gap-9">
           <div className="lg:border-r lg:border-slate-300 lg:pr-10">
             <Badge>Credibility</Badge>
-            <h2 className="mt-5 text-3xl font-black leading-tight text-navy">
+            <h2 className="mt-5 text-3xl font-bold leading-tight text-navy">
               Built on Real Sales
               <span className="block">and GTM Execution</span>
             </h2>
@@ -554,7 +597,7 @@ function CredibilitySection() {
             />
             <div className="mt-8 flex gap-4 rounded-lg border border-blue-100 bg-blue-50 px-5 py-5 text-blue-700 shadow-sm">
               <ShieldCheck className="h-7 w-7 shrink-0" />
-              <p className="text-sm font-extrabold leading-5">
+              <p className="text-sm font-semibold leading-5">
                 This is not outside-in advisory.
                 <span className="block">This comes from operating inside revenue pressure.</span>
               </p>
@@ -563,7 +606,7 @@ function CredibilitySection() {
 
           <div>
             <Badge>Case Study</Badge>
-            <h2 className="mt-5 text-3xl font-black leading-tight text-navy">
+            <h2 className="mt-5 text-3xl font-bold leading-tight text-navy">
               Many Demos.
               <span className="block">Weak Conversion.</span>
             </h2>
@@ -572,13 +615,19 @@ function CredibilitySection() {
               <span className="block">• Steady demo flow&nbsp;&nbsp; • Strong product interest&nbsp;&nbsp; • Active pipeline</span>
               <span className="block">But revenue remained inconsistent.</span>
             </p>
-            <div className="mt-6 grid grid-cols-3 gap-4">
+            <div className="mt-6 grid grid-cols-3 gap-4 items-stretch">
               {["+22%|Demo-to-Proposal conversion", "Shorter|Sales cycles", "Fewer|Wasted demos"].map((stat) => {
                 const [value, label] = stat.split("|");
+
                 return (
-                  <div key={stat} className="rounded-xl border border-blue-200 bg-white px-3 py-5 text-center shadow-sm">
-                    <p className="text-2xl font-black text-blue-600">{value}</p>
-                    <p className="text-xs leading-4 text-slate-700">{label}</p>
+                  <div
+                    key={stat}
+                    className="rounded-xl p-[1px] bg-[linear-gradient(138.81deg,#E2E8F0_26.66%,#125CF7_111.39%)] h-full"
+                  >
+                    <div className="h-full rounded-xl bg-white px-3 py-5 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md flex flex-col justify-center">
+                      <p className="text-2xl font-semibold text-blue-600">{value}</p>
+                      <p className="text-xs leading-4 text-slate-700">{label}</p>
+                    </div>
                   </div>
                 );
               })}
@@ -596,7 +645,7 @@ function CredibilitySection() {
             <button
               type="button"
               onClick={() => setExpanded((value) => !value)}
-              className="mt-8 flex items-center gap-2 text-sm font-semibold text-blue-600 transition hover:text-blue-800"
+              className="mt-8 flex items-center gap-2 text-sm text-blue-600 transition hover:text-blue-800"
               aria-expanded={expanded}
             >
               Full case breakdown
@@ -615,23 +664,36 @@ function CredibilitySection() {
       </div>
 
       <SectionShell>
-        {expanded ? (
-          <div className="mt-12 grid gap-8 rounded-xl border border-slate-200 bg-white px-6 py-8 shadow-card md:grid-cols-2 lg:grid-cols-4 lg:px-9 lg:py-9">
-            {caseDetails.map((column) => (
-              <div key={column.title}>
-                <h3 className="mb-5 text-lg font-black text-ink">{column.title}</h3>
-                <ul className="space-y-4 text-base leading-6 text-slate-700">
-                  {column.items.map((item) => (
-                    <li key={item} className="flex gap-3">
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+        <div
+          className={`
+            mt-12 grid gap-8 rounded-xl border border-slate-200 px-6 py-8 shadow-card
+            transition-all duration-300 ease-in-out
+            overflow-hidden
+            bg-[linear-gradient(145.48deg,#004FFF_-197.73%,#FFFFFF_40.15%)]
+            ${expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 py-0"}
+          `}
+        >
+          <div className="overflow-hidden">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 lg:px-3 lg:py-3">
+              {caseDetails.map((column) => (
+                <div key={column.title}>
+                  <h3 className="mb-5 text-lg font-medium text-ink">
+                    {column.title}
+                  </h3>
+
+                  <ul className="space-y-4 text-sm leading-6 text-slate-700">
+                    {column.items.map((item) => (
+                      <li key={item} className="flex gap-3">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
-        ) : null}
+        </div>
       </SectionShell>
     </section>
   );
@@ -644,14 +706,14 @@ function InvestmentSection() {
         <div className="grid gap-8 lg:grid-cols-[0.68fr_1.8fr] lg:gap-10">
           <div>
             <Badge>Investment</Badge>
-            <h2 className="mt-5 text-3xl font-black leading-tight text-ink">
+            <h2 className="mt-5 text-3xl font-semibold leading-tight text-ink">
               A Smarter $2,500
               <span className="block">First Investment</span>
             </h2>
-            <p className="mt-5 text-sm leading-6 text-slate-700">
+            <p className="mt-5 font-medium text-sm leading-6 text-slate-700">
               Most SaaS teams try to scale before understanding what is broken.
             </p>
-            <p className="mt-4 text-sm leading-6 text-slate-700">
+            <p className="mt-4 font-medium text-sm leading-6 text-slate-700">
               Before hiring, scaling, or increasing spend — get clarity first.
             </p>
           </div>
@@ -661,9 +723,9 @@ function InvestmentSection() {
                 key={card.title}
                 className="rounded-xl border border-slate-200 bg-white px-6 py-6 shadow-card transition hover:-translate-y-1 hover:shadow-soft"
               >
-                <h3 className="mb-5 text-sm font-black uppercase text-slate-800">{card.title}</h3>
+                <h3 className="mb-5 text-sm font-medium uppercase text-slate-800">{card.title}</h3>
                 <BulletList items={card.items} tone={card.tone} />
-                {card.note ? <p className="mt-4 text-sm font-extrabold leading-5 text-slate-800">{card.note}</p> : null}
+                {card.note ? <p className="mt-4 text-sm font-medium leading-5 text-slate-800">{card.note}</p> : null}
               </div>
             ))}
           </div>
@@ -679,13 +741,13 @@ function FinalCTA({ bookingMessage, onBookCall }) {
       <SectionShell>
         <div className="grid items-center gap-9 lg:grid-cols-[1.25fr_0.75fr]">
           <div className="flex gap-7">
-            <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-blue-500/80 sm:flex">
+            <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[linear-gradient(90deg,rgba(81,162,255,0.6),rgba(41,121,255,0.6))] sm:flex">
               <CalendarDays className="h-6 w-6" />
             </div>
             <div>
-              <h2 className="max-w-[690px] text-3xl font-medium leading-tight sm:text-4xl">
+              <h2 className="max-w-[690px] text-3xl leading-tight sm:text-4xl">
                 If the revenue feels harder than it should
-                <span className="block font-black text-blue-400">Let&apos;s Fix It.</span>
+                <span className="block font-bold text-blue-400">Let&apos;s Fix It.</span>
               </h2>
               <p className="mt-7 text-sm font-black uppercase tracking-[0.08em] text-white">We&apos;ll quickly assess:</p>
               <ul className="mt-4 space-y-3 text-sm text-blue-100">
@@ -702,7 +764,7 @@ function FinalCTA({ bookingMessage, onBookCall }) {
               </ul>
             </div>
           </div>
-          <div className="text-left lg:text-center">
+          <div className="text-left lg:text-center lg:ms-auto">
             <PrimaryButton className="w-full max-w-[280px] bg-blue-500 py-4 text-base hover:bg-blue-400" href="#book-call" onClick={onBookCall}>
               Book Your Free Call
             </PrimaryButton>
@@ -711,9 +773,9 @@ function FinalCTA({ bookingMessage, onBookCall }) {
                 {bookingMessage}
               </p>
             ) : null}
-            <p className="mt-5 text-sm font-extrabold text-white">No pressure. No obligation.</p>
+            <p className="mt-5 text-sm font-medium text-white">No pressure. No obligation.</p>
             <p className="mt-2 flex items-center gap-2 text-sm text-blue-100 lg:justify-center">
-              <Sparkles className="h-4 w-4 text-blue-400" />
+              <Star className="h-4 w-4 text-blue-400" />
               15-minute diagnostic call
             </p>
           </div>
