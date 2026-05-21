@@ -3,6 +3,9 @@ import "./globals.css";
 export const metadata = {
   title: "Unblocksaas | 3-Day Revenue Diagnostic",
   description: "A focused 3-day diagnostic to uncover what's blocking B2B SaaS revenue conversion.",
+  icons: {
+    icon: "/images/favicon.png",
+  },
 };
 
 export default function RootLayout({ children }) {
