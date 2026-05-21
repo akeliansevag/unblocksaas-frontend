@@ -532,7 +532,7 @@ function OfferSection() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <section id="diagnostic" className="bg-white py-16 sm:py-20">
+    <section id="diagnostic" className="bg-white py-6 sm:py-10">
       <SectionShell>
         <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-14">
           <div>
@@ -595,7 +595,7 @@ function CredibilitySection() {
                 "Experience across SaaS, cloud, AI, and enterprise technology environments",
               ]}
             />
-            <div className="mt-8 flex gap-4 rounded-lg border border-blue-100 bg-blue-50 px-5 py-5 text-blue-700 shadow-sm">
+            <div className="mt-8 flex gap-4 rounded-lg border border-blue-300 bg-[#155DF6]/10 px-5 py-5 text-blue-700 shadow-sm">
               <ShieldCheck className="h-7 w-7 shrink-0" />
               <p className="text-sm font-semibold leading-5">
                 This is not outside-in advisory.
@@ -664,16 +664,18 @@ function CredibilitySection() {
       </div>
 
       <SectionShell>
+        {/* COLLAPSIBLE WRAPPER (controls EVERYTHING visible) */}
         <div
           className={`
-            mt-12 grid gap-8 rounded-xl border border-slate-200 px-6 py-8 shadow-card
+            overflow-hidden rounded-xl shadow-card
             transition-all duration-300 ease-in-out
-            overflow-hidden
-            bg-[linear-gradient(145.48deg,#004FFF_-197.73%,#FFFFFF_40.15%)]
-            ${expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 py-0"}
+            ${expanded ? "max-h-[2000px] opacity-100 mt-12" : "max-h-0 opacity-0"}
           `}
         >
-          <div className="overflow-hidden">
+
+          {/* VISUAL CARD ONLY EXISTS WHEN EXPANDED */}
+          <div className="border border-slate-200 bg-[linear-gradient(145.48deg,#004FFF_-197.73%,#FFFFFF_40.15%)] px-6 py-8">
+
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 lg:px-3 lg:py-3">
               {caseDetails.map((column) => (
                 <div key={column.title}>
@@ -692,6 +694,7 @@ function CredibilitySection() {
                 </div>
               ))}
             </div>
+
           </div>
         </div>
       </SectionShell>
