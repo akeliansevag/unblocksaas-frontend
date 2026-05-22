@@ -813,6 +813,20 @@ export default function LandingPage() {
       <CredibilitySection />
       <InvestmentSection />
       <FinalCTA bookingMessage={bookingMessage} onBookCall={openCalendlyPopup} />
+
+      {/* FOOTER */}
+      <footer className="bg-[#071e43] py-5">
+        <SectionShell>
+          <div className="flex flex-col lg:items-center justify-between gap-3 lg:text-center sm:flex-row sm:text-left">
+            <p className="text-sm text-slate-500">© {new Date().getFullYear()} UnblockSaaS. All rights reserved.</p>
+
+            <div className="flex items-center gap-2 text-sm text-slate-500">
+              <span>Powered by</span>
+              <a href="https://elevate8.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-400 transition hover:text-blue-700">Elevate8</a>
+            </div>
+          </div>
+        </SectionShell>
+      </footer>
     </main>
   );
 }
