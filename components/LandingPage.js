@@ -719,7 +719,7 @@ function InvestmentSection() {
     <section id="investment" className="bg-white py-12 sm:py-14">
       <SectionShell>
         <div className="grid gap-8 lg:grid-cols-[0.68fr_1.8fr] lg:gap-10">
-          <div class="lg:w-4/5">
+          <div className="lg:w-4/5">
             <Badge>Investment</Badge>
             <h2 className="mt-5 text-3xl font-semibold leading-tight text-ink">
               A Smarter $2,500
