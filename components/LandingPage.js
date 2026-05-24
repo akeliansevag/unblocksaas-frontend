@@ -11,7 +11,6 @@ import {
   ChevronDown,
   ChevronUp,
   Clock3,
-  CircleStar,
   Gauge,
   Handshake,
   Menu,
@@ -166,9 +165,9 @@ const investmentCards = [
     title: "COMPARED TO ALTERNATIVES:",
     tone: "amber",
     items: [
-      { text: "Cheaper than one wrong hire", icon: CircleStar },
-      { text: "Faster than months of trial and error", icon: CircleStar },
-      { text: "Less waste than misdirected ad spend", icon: CircleStar },
+      { text: "Cheaper than one wrong hire", icon: Star },
+      { text: "Faster than months of trial and error", icon: Star },
+      { text: "Less waste than misdirected ad spend", icon: Star },
     ],
     note: "One better sales quarter can justify this investment.",
   },
@@ -351,6 +350,8 @@ function Header({ onBookCall }) {
 }
 
 function Hero({ onBookCall }) {
+  const [videoOpen, setVideoOpen] = useState(false);
+
   return (
     <section id="top" className="bg-white pb-12 pt-10 sm:pb-14 lg:pt-11">
       <SectionShell>
@@ -403,14 +404,59 @@ function Hero({ onBookCall }) {
             </div>
           </div>
           <div className="pt-0 lg:pt-0">
-            <img
-              src="/images/hero-meeting.jpg"
-              alt="Revenue diagnostic discussion around a tablet"
-              className="h-auto w-full rounded-xl object-cover shadow-sm"
-            />
+            <div className="relative overflow-hidden rounded-xl shadow-sm">
+              <img
+                src="/images/hero-meeting.jpg"
+                alt="Revenue diagnostic discussion around a tablet"
+                className="h-auto w-full object-cover"
+              />
+              <button
+                type="button"
+                onClick={() => setVideoOpen(true)}
+                className="absolute left-1/2 top-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 rounded-full border border-white/70 bg-white/90 px-3.5 py-2 text-sm font-semibold text-navy shadow-card backdrop-blur transition hover:-translate-x-1/2 hover:-translate-y-[calc(50%+2px)] hover:bg-white hover:text-blue-600"
+                aria-label="Play video"
+              >
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-white">
+                  <PlaySquare className="h-4 w-4" />
+                </span>
+                Watch
+              </button>
+            </div>
           </div>
         </div>
       </SectionShell>
+      {videoOpen ? (
+        <div
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/80 px-4 py-8"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Video"
+          onClick={() => setVideoOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-5xl overflow-hidden rounded-xl bg-black shadow-soft"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setVideoOpen(false)}
+              className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/95 text-slate-900 shadow-card transition hover:bg-white hover:text-blue-600"
+              aria-label="Close video"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <div className="aspect-video w-full">
+              <iframe
+                title="Unblocksaas intro video"
+                src="https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&rel=0"
+                className="h-full w-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }
