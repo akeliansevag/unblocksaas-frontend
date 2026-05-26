@@ -458,11 +458,11 @@ function Hero({ onBookCall }) {
               <button
                 type="button"
                 onClick={() => setVideoOpen(true)}
-                className="absolute left-1/2 top-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 rounded-full border border-white/70 bg-white/90 px-3.5 py-2 text-sm font-semibold text-navy shadow-card backdrop-blur transition hover:-translate-x-1/2 hover:-translate-y-[calc(50%+2px)] hover:bg-white hover:text-blue-600"
+                className="absolute left-1/2 top-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 items-center gap-1 rounded-full border border-white/70 bg-white/90 px-2 py-1 text-[11px] font-semibold text-navy shadow-card backdrop-blur transition hover:-translate-x-1/2 hover:-translate-y-[calc(50%+2px)] hover:bg-white hover:text-blue-600 sm:gap-1.5 sm:px-2.5 sm:py-1.5 sm:text-xs"
                 aria-label="Play video"
               >
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-white">
-                  <PlaySquare className="h-4 w-4" />
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-white sm:h-6 sm:w-6">
+                  <PlaySquare className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                 </span>
                 Watch
               </button>
@@ -631,6 +631,40 @@ function TimelineCard({ item, index, expanded }) {
   );
 }
 
+function CaseBreakdownPanel({ expanded, className = "" }) {
+  return (
+    <div
+      className={`
+        overflow-hidden rounded-xl shadow-card
+        transition-all duration-300 ease-in-out
+        ${expanded ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"}
+        ${className}
+      `}
+    >
+      <div className="border border-slate-200 bg-[linear-gradient(145.48deg,#004FFF_-197.73%,#FFFFFF_40.15%)] px-6 py-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 lg:px-3 lg:py-3">
+          {caseDetails.map((column) => (
+            <div key={column.title}>
+              <h3 className="mb-5 text-lg font-medium text-ink">
+                {column.title}
+              </h3>
+
+              <ul className="space-y-4 text-sm leading-6 text-slate-700">
+                {column.items.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function OfferSection() {
   const [expanded, setExpanded] = useState(false);
 
@@ -678,7 +712,7 @@ function CredibilitySection() {
 
   return (
     <section id="results" className="overflow-hidden bg-slate-100 py-12 sm:py-14">
-      <div className="w-full pl-5 pr-0 sm:pl-8 lg:pl-[max(3rem,calc((100vw-1536px)/2+3rem))]">
+      <div className="w-full pl-5 pr-5 sm:pl-8 sm:pr-0 lg:pl-[max(3rem,calc((100vw-1536px)/2+3rem))]">
         <div className="grid gap-10 pr-0 lg:grid-cols-[0.86fr_1.05fr_1.12fr] lg:gap-9">
           <div className="lg:border-r lg:border-slate-300 lg:pr-10">
             <Badge>Credibility</Badge>
@@ -754,6 +788,10 @@ function CredibilitySection() {
               Full case breakdown
               {expanded ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
             </button>
+            <CaseBreakdownPanel
+              expanded={expanded}
+              className={expanded ? "mt-6 lg:hidden" : "lg:hidden"}
+            />
           </div>
 
           <div className="relative justify-self-end lg:min-w-[380px] xl:min-w-[500px]">
@@ -766,40 +804,11 @@ function CredibilitySection() {
         </div>
       </div>
 
-      <SectionShell>
-        {/* COLLAPSIBLE WRAPPER (controls EVERYTHING visible) */}
-        <div
-          className={`
-            overflow-hidden rounded-xl shadow-card
-            transition-all duration-300 ease-in-out
-            ${expanded ? "max-h-[2000px] opacity-100 mt-12" : "max-h-0 opacity-0"}
-          `}
-        >
-
-          {/* VISUAL CARD ONLY EXISTS WHEN EXPANDED */}
-          <div className="border border-slate-200 bg-[linear-gradient(145.48deg,#004FFF_-197.73%,#FFFFFF_40.15%)] px-6 py-8">
-
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 lg:px-3 lg:py-3">
-              {caseDetails.map((column) => (
-                <div key={column.title}>
-                  <h3 className="mb-5 text-lg font-medium text-ink">
-                    {column.title}
-                  </h3>
-
-                  <ul className="space-y-4 text-sm leading-6 text-slate-700">
-                    {column.items.map((item) => (
-                      <li key={item} className="flex gap-3">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </div>
+      <SectionShell className="hidden lg:block">
+        <CaseBreakdownPanel
+          expanded={expanded}
+          className={expanded ? "mt-12" : ""}
+        />
       </SectionShell>
     </section>
   );
