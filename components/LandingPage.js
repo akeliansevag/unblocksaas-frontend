@@ -44,7 +44,6 @@ const navItems = [
 const heroChecks = [
   "Diagnose hidden conversion blockers across ICP, demos, pricing, and sales execution.",
   "Identify the few constraints creating the biggest revenue drag",
-  "Diagnose hidden conversion blockers across ICP, demos, pricing, and sales execution.",
 ];
 
 const familiarCards = [
@@ -237,6 +236,22 @@ function BulletList({ items, tone = "blue", className = "" }) {
   );
 }
 
+function PricingCard({ className = "" }) {
+  return (
+    <div className={`flex min-w-[290px] items-center gap-4 rounded-lg border border-blue-100 bg-slate-50 px-4 py-4 shadow-sm ${className}`}>
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-1 ring-blue-100">
+        <ShieldCheck className="h-6 w-6" />
+      </div>
+      <div>
+        <p className="text-xs font-medium text-slate-700">Fixed-price diagnostic</p>
+        <p className="text-2xl font-semibold leading-tight text-ink">USD 2,500</p>
+        <p className="text-xs leading-5 text-slate-500">3 focused days</p>
+        <p className="text-xs leading-5 text-slate-500">No open-ended consulting scope.</p>
+      </div>
+    </div>
+  );
+}
+
 function Header({ onBookCall }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("why-it-breaks");
@@ -353,10 +368,50 @@ function Hero({ onBookCall }) {
   const [videoOpen, setVideoOpen] = useState(false);
 
   return (
-    <section id="top" className="bg-white pb-12 pt-10 sm:pb-14 lg:pt-11">
+    <section id="top" className="bg-white pb-8 pt-5 sm:pb-14 sm:pt-10 lg:pt-11">
       <SectionShell>
-        <div className="grid items-start gap-10 lg:grid-cols-[1fr_0.94fr] lg:gap-14">
-          <div className="max-w-[630px]">
+        <div className="grid items-start gap-4 sm:gap-10 lg:grid-cols-[1fr_0.94fr] lg:gap-14">
+          <div className="order-1 sm:hidden">
+            <Badge>
+              <Clock3 className="h-3.5 w-3.5" />
+              3-Day Revenue Diagnostic
+            </Badge>
+            <h1 className="mt-3 text-[30px] font-bold leading-[1.04] tracking-normal text-ink">
+              Your Pipeline Looks Active
+              <span className="mt-1 block text-blue-600">Your Revenue Doesn&apos;t</span>
+            </h1>
+          </div>
+
+          <PricingCard className="order-2 sm:hidden" />
+
+          <div className="order-4 sm:hidden">
+            <p className="text-[15px] font-medium leading-6 text-slate-700">
+              Most B2B SaaS teams don&apos;t have an activity problem.
+              <span className="block">They have hidden conversion constraints inside their GTM system.</span>
+            </p>
+            <ul className="mt-4 space-y-3 text-sm text-slate-600">
+              {heroChecks.slice(0, 2).map((item, index) => (
+                <li key={`${item}-${index}`} className="flex gap-3">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-5">
+              <PrimaryButton className="w-full" href="#book-call" onClick={onBookCall}>
+                Book Your Free Fit Call
+              </PrimaryButton>
+              <div className="mt-3 flex items-start gap-2 text-xs leading-5 text-slate-500">
+                <CalendarDays className="h-4 w-4 shrink-0 text-slate-500" />
+                <p>
+                  No commitment.
+                  <span className="block">20-30 minute conversation to assess fit</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="hidden max-w-[630px] sm:order-1 sm:block">
             <Badge>
               <Clock3 className="h-3.5 w-3.5" />
               3-Day Revenue Diagnostic
@@ -378,17 +433,7 @@ function Hero({ onBookCall }) {
               ))}
             </ul>
             <div className="mt-9 flex flex-col gap-5 sm:flex-row sm:items-center">
-              <div className="flex min-w-[290px] items-center gap-4 rounded-lg border border-blue-100 bg-slate-50 px-4 py-4 shadow-sm">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-1 ring-blue-100">
-                  <ShieldCheck className="h-6 w-6" />
-                </div>
-                <div>
-                  <p className="text-xs font-medium text-slate-700">Fixed-price diagnostic</p>
-                  <p className="text-2xl font-semibold leading-tight text-ink">USD 2,500</p>
-                  <p className="text-xs leading-5 text-slate-500">3 focused days</p>
-                  <p className="text-xs leading-5 text-slate-500">No open-ended consulting scope.</p>
-                </div>
-              </div>
+              <PricingCard className="hidden sm:flex" />
               <div>
                 <PrimaryButton className="w-full sm:w-auto" href="#book-call" onClick={onBookCall}>
                   Book Your Free Fit Call
@@ -403,7 +448,7 @@ function Hero({ onBookCall }) {
               </div>
             </div>
           </div>
-          <div className="pt-0 lg:pt-0">
+          <div className="order-3 pt-0 sm:order-2 lg:pt-0">
             <div className="relative overflow-hidden rounded-xl shadow-sm">
               <img
                 src="/images/video-poster-C8EKn3DPGOM.jpg"
