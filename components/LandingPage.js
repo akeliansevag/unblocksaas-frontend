@@ -382,7 +382,7 @@ function Hero({ onBookCall }) {
             </h1>
           </div>
 
-          <PricingCard className="order-2 sm:hidden" />
+          <PricingCard className="order-2 mt-4 sm:hidden" />
 
           <div className="order-4 sm:hidden">
             <p className="text-[13px] font-medium leading-5 text-slate-700">
