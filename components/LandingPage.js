@@ -406,8 +406,8 @@ function Hero({ onBookCall }) {
           <div className="pt-0 lg:pt-0">
             <div className="relative overflow-hidden rounded-xl shadow-sm">
               <img
-                src="/images/hero-meeting.jpg"
-                alt="Revenue diagnostic discussion around a tablet"
+                src="/images/video-poster-C8EKn3DPGOM.jpg"
+                alt="Video poster"
                 className="h-auto w-full object-cover"
               />
               <button
@@ -448,7 +448,7 @@ function Hero({ onBookCall }) {
             <div className="aspect-video w-full">
               <iframe
                 title="Unblocksaas intro video"
-                src="https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&rel=0"
+                src="https://www.youtube.com/embed/C8EKn3DPGOM?autoplay=1&rel=0"
                 className="h-full w-full border-0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
