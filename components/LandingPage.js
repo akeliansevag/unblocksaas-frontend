@@ -370,7 +370,7 @@ function Hero({ onBookCall }) {
   return (
     <section id="top" className="bg-white pb-6 pt-3 sm:pb-14 sm:pt-10 lg:pt-11">
       <SectionShell>
-        <div className="grid items-start gap-3 sm:gap-10 lg:grid-cols-[1fr_0.94fr] lg:gap-14">
+        <div className="grid items-start gap-3 sm:gap-10 lg:grid-cols-[1fr_0.94fr] lg:items-center lg:gap-14">
           <div className="order-1 sm:hidden">
             <Badge>
               <Clock3 className="h-3.5 w-3.5" />
@@ -451,7 +451,7 @@ function Hero({ onBookCall }) {
           <div className="order-3 pt-0 sm:order-2 lg:pt-0">
             <div className="relative overflow-hidden rounded-xl shadow-sm">
               <img
-                src="/images/video-poster-C8EKn3DPGOM.jpg"
+                src="/images/video-poster-user-attachment.jpg"
                 alt="Video poster"
                 className="h-[145px] w-full object-cover sm:h-auto"
               />
