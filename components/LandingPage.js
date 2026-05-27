@@ -16,6 +16,7 @@ import {
   Menu,
   Megaphone,
   MessageSquareText,
+  Play,
   PlaySquare,
   RefreshCw,
   Search,
@@ -238,8 +239,8 @@ function BulletList({ items, tone = "blue", className = "" }) {
 
 function PricingCard({ className = "" }) {
   return (
-    <div className={`flex min-w-0 items-center gap-3 rounded-lg border border-blue-100 bg-slate-50 px-3 py-3 shadow-sm sm:min-w-[290px] sm:gap-4 sm:px-4 sm:py-4 ${className}`}>
-      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-1 ring-blue-100 sm:h-10 sm:w-10">
+    <div className={`flex min-w-0 items-center gap-3 rounded-lg border border-blue-300 bg-blue-50/80 px-3 py-3 shadow-[0_10px_26px_rgba(37,99,235,0.12)] ring-1 ring-blue-100 sm:min-w-[290px] sm:gap-4 sm:px-4 sm:py-4 ${className}`}>
+      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-white text-blue-600 ring-1 ring-blue-200 sm:h-10 sm:w-10">
         <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6" />
       </div>
       <div>
@@ -318,7 +319,7 @@ function Header({ onBookCall }) {
           ))}
         </nav>
         <PrimaryButton className="hidden px-6 py-3 lg:inline-flex" href="#book-call" onClick={onBookCall}>
-          Book Your Call
+          Book Your Free Fit Call
         </PrimaryButton>
         <button
           type="button"
@@ -355,7 +356,7 @@ function Header({ onBookCall }) {
                 onBookCall(event);
               }}
             >
-              Book Your Call
+              Book Your Free Fit Call
             </PrimaryButton>
           </SectionShell>
         </div>
@@ -397,7 +398,7 @@ function Hero({ onBookCall }) {
                 <CalendarDays className="h-4 w-4 shrink-0 text-slate-500" />
                 <p>
                   No commitment.
-                  <span className="block">20-30 minute conversation to assess fit</span>
+                  <span className="block">20 - 30 minute conversation to assess fit</span>
                 </p>
               </div>
             </div>
@@ -442,31 +443,36 @@ function Hero({ onBookCall }) {
                   <CalendarDays className="h-4 w-4 shrink-0 text-slate-500" />
                   <p>
                     No commitment.
-                    <span className="block">20-30 minute conversation to assess fit</span>
+                    <span className="block">20 - 30 minute conversation to assess fit</span>
                   </p>
                 </div>
               </div>
             </div>
           </div>
           <div className="order-3 pt-0 sm:order-2 lg:pt-0">
-            <div className="relative overflow-hidden rounded-xl shadow-sm">
+            <button
+              type="button"
+              onClick={() => setVideoOpen(true)}
+              className="group relative block w-full overflow-hidden rounded-xl text-left shadow-sm outline-none ring-blue-500/40 transition hover:-translate-y-0.5 hover:shadow-card focus-visible:ring-4"
+              aria-label="Play diagnostic video"
+            >
               <img
                 src="/images/video-poster-user-attachment.jpg"
                 alt="Video poster"
                 className="h-[145px] w-full object-cover sm:h-auto"
               />
-              <button
-                type="button"
-                onClick={() => setVideoOpen(true)}
-                className="absolute left-1/2 top-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 items-center gap-1 rounded-full border border-white/70 bg-white/90 px-2 py-1 text-[11px] font-semibold text-navy shadow-card backdrop-blur transition hover:-translate-x-1/2 hover:-translate-y-[calc(50%+2px)] hover:bg-white hover:text-blue-600 sm:gap-1.5 sm:px-2.5 sm:py-1.5 sm:text-xs"
-                aria-label="Play video"
-              >
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-white sm:h-6 sm:w-6">
-                  <PlaySquare className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                </span>
-                Watch
-              </button>
-            </div>
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 via-slate-950/35 to-transparent px-3 pb-3 pt-8 text-white sm:px-5 sm:pb-5 sm:pt-20">
+                <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-blue-100 sm:text-xs">
+                  Watch the Diagnostic
+                </p>
+                <p className="mt-1 max-w-[420px] text-[12px] font-semibold leading-4 sm:text-base sm:leading-6">
+                  Why most SaaS teams mistake a conversion problem for a pipeline problem.
+                </p>
+              </div>
+              <span className="absolute left-1/2 top-[42%] flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white/90 text-blue-600 shadow-card backdrop-blur transition group-hover:scale-105 group-hover:bg-white sm:top-1/2 sm:h-10 sm:w-10">
+                <Play className="ml-0.5 h-3.5 w-3.5 fill-current sm:h-4 sm:w-4" />
+              </span>
+            </button>
           </div>
         </div>
       </SectionShell>
@@ -747,11 +753,21 @@ function CredibilitySection() {
               Many Demos.
               <span className="block">Weak Conversion.</span>
             </h2>
-            <p className="mt-6 text-sm leading-7 text-slate-700">
-              A B2B SaaS company had strong activity:
-              <span className="block">• Steady demo flow&nbsp;&nbsp; • Strong product interest&nbsp;&nbsp; • Active pipeline</span>
-              <span className="block">But revenue remained inconsistent.</span>
-            </p>
+            <div className="mt-6 text-sm leading-7 text-slate-700">
+              <p>A B2B SaaS company had strong activity:</p>
+              <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap lg:flex-nowrap">
+                {["Steady demo flow", "Strong product interest", "Active pipeline"].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-1.5 rounded-lg border border-blue-100 bg-white/70 px-2.5 py-2 text-xs font-medium leading-4 text-slate-700 shadow-sm lg:whitespace-nowrap xl:px-3 xl:text-sm"
+                  >
+                    <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-blue-600 xl:h-4 xl:w-4" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-3">But revenue remained inconsistent.</p>
+            </div>
             <div className="mt-6 grid grid-cols-3 gap-4 items-stretch">
               {["+22%|Demo-to-Proposal conversion", "Shorter|Sales cycles", "Fewer|Wasted demos"].map((stat) => {
                 const [value, label] = stat.split("|");
@@ -881,7 +897,7 @@ function FinalCTA({ bookingMessage, onBookCall }) {
           </div>
           <div className="text-left lg:text-center lg:ms-auto">
             <PrimaryButton className="w-full max-w-[280px] bg-blue-500 py-4 text-base hover:bg-blue-400" href="#book-call" onClick={onBookCall}>
-              Book Your Free Call
+              Book Your Free Fit Call
             </PrimaryButton>
             {bookingMessage ? (
               <p className="mx-auto mt-4 max-w-[320px] rounded-lg border border-blue-300/30 bg-white/10 px-4 py-3 text-sm font-semibold leading-5 text-blue-50">
@@ -891,7 +907,7 @@ function FinalCTA({ bookingMessage, onBookCall }) {
             <p className="mt-5 text-sm font-medium text-white">No pressure. No obligation.</p>
             <p className="mt-2 flex items-center gap-2 text-sm text-blue-100 lg:justify-center">
               <Star className="h-4 w-4 text-blue-400" />
-              15-minute diagnostic call
+              20 - 30 minute diagnostic call
             </p>
           </div>
         </div>
