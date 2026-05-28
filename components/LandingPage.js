@@ -369,32 +369,32 @@ function Hero({ onBookCall }) {
   const [videoOpen, setVideoOpen] = useState(false);
 
   return (
-    <section id="top" className="bg-white pb-6 pt-3 sm:pb-14 sm:pt-10 lg:pt-11">
+    <section id="top" className="bg-white pb-10 pt-5 sm:pb-14 sm:pt-10 lg:pt-11">
       <SectionShell>
-        <div className="grid items-start gap-3 sm:gap-10 lg:grid-cols-[1fr_0.94fr] lg:items-center lg:gap-14">
+        <div className="grid items-start gap-5 sm:gap-10 lg:grid-cols-[1fr_0.94fr] lg:items-center lg:gap-14">
           <div className="order-1 sm:hidden">
             <Badge>
               <Clock3 className="h-3.5 w-3.5" />
               3-Day Revenue Diagnostic
             </Badge>
-            <h1 className="mt-2 text-[25px] font-bold leading-[1.02] tracking-normal text-ink">
+            <h1 className="mt-4 text-[29px] font-bold leading-[1.05] tracking-normal text-ink">
               Your Pipeline Looks Active
-              <span className="block text-blue-600">Your Revenue Doesn&apos;t</span>
+              <span className="mt-1 block text-blue-600">Your Revenue Doesn&apos;t</span>
             </h1>
           </div>
 
-          <PricingCard className="order-2 mt-4 sm:hidden" />
+          <PricingCard className="order-2 mt-2 sm:hidden" />
 
           <div className="order-4 sm:hidden">
-            <p className="text-[13px] font-medium leading-5 text-slate-700">
+            <p className="text-[15px] font-medium leading-6 text-slate-700">
               Most B2B SaaS teams don&apos;t have an activity problem.
               <span className="block">They have hidden conversion constraints inside their GTM system.</span>
             </p>
-            <div className="mt-3">
-              <PrimaryButton className="w-full py-2.5" href="#book-call" onClick={onBookCall}>
+            <div className="mt-5">
+              <PrimaryButton className="w-full" href="#book-call" onClick={onBookCall}>
                 Book Your Free Fit Call
               </PrimaryButton>
-              <div className="mt-2 flex items-start gap-2 text-[11px] leading-4 text-slate-500">
+              <div className="mt-3 flex items-start gap-2 text-xs leading-5 text-slate-500">
                 <CalendarDays className="h-4 w-4 shrink-0 text-slate-500" />
                 <p>
                   No commitment.
@@ -402,10 +402,10 @@ function Hero({ onBookCall }) {
                 </p>
               </div>
             </div>
-            <ul className="mt-3 space-y-2 text-[13px] leading-5 text-slate-600">
+            <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-600">
               {heroChecks.slice(0, 2).map((item, index) => (
-                <li key={`${item}-${index}`} className="flex gap-2.5">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-blue-600" />
+                <li key={`${item}-${index}`} className="flex gap-3">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -459,7 +459,7 @@ function Hero({ onBookCall }) {
               <img
                 src="/images/video-poster-user-attachment.jpg"
                 alt="Video poster"
-                className="h-[145px] w-full object-cover sm:h-auto"
+                className="h-[185px] w-full object-cover sm:h-auto"
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 via-slate-950/35 to-transparent px-3 pb-3 pt-8 text-white sm:px-5 sm:pb-5 sm:pt-20">
                 <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-blue-100 sm:text-xs">
@@ -719,8 +719,8 @@ function CredibilitySection() {
   return (
     <section id="results" className="overflow-hidden bg-slate-100 py-12 sm:py-14">
       <div className="w-full pl-5 pr-5 sm:pl-8 sm:pr-0 lg:pl-[max(3rem,calc((100vw-1536px)/2+3rem))]">
-        <div className="grid gap-10 pr-0 lg:grid-cols-[0.86fr_1.05fr_1.12fr] lg:gap-9">
-          <div className="lg:border-r lg:border-slate-300 lg:pr-10">
+        <div className="grid gap-10 pr-0 lg:grid-cols-[minmax(300px,0.9fr)_minmax(300px,0.92fr)_minmax(280px,0.8fr)] lg:gap-7 xl:grid-cols-[minmax(340px,0.9fr)_minmax(350px,0.95fr)_minmax(360px,0.9fr)] xl:gap-9">
+          <div className="lg:border-r lg:border-slate-300 lg:pr-10 2xl:pr-10">
             <Badge>Credibility</Badge>
             <h2 className="mt-5 text-3xl font-bold leading-tight text-navy">
               Built on Real Sales
@@ -755,11 +755,11 @@ function CredibilitySection() {
             </h2>
             <div className="mt-6 text-sm leading-7 text-slate-700">
               <p>A B2B SaaS company had strong activity:</p>
-              <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap lg:flex-nowrap">
+              <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
                 {["Steady demo flow", "Strong product interest", "Active pipeline"].map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-1.5 rounded-lg border border-blue-100 bg-white/70 px-2.5 py-2 text-xs font-medium leading-4 text-slate-700 shadow-sm lg:whitespace-nowrap xl:px-3 xl:text-sm"
+                    className="flex items-center gap-1.5 rounded-lg border border-blue-100 bg-white/70 px-2.5 py-2 text-xs font-medium leading-4 text-slate-700 shadow-sm xl:px-3 xl:text-sm"
                   >
                     <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-blue-600 xl:h-4 xl:w-4" />
                     <span>{item}</span>
@@ -810,7 +810,7 @@ function CredibilitySection() {
             />
           </div>
 
-          <div className="relative justify-self-end lg:min-w-[380px] xl:min-w-[500px]">
+          <div className="relative min-w-0 justify-self-end">
             <img
               src="/images/revenue-increase.webp"
               alt="Laptop showing revenue chart"
@@ -842,10 +842,7 @@ function InvestmentSection() {
               <span className="block">First Investment</span>
             </h2>
             <p className="mt-5 font-medium text-sm leading-6 text-slate-700">
-              Most SaaS teams try to scale before understanding what is broken.
-            </p>
-            <p className="mt-4 font-medium text-sm leading-6 text-slate-700">
-              Before hiring, scaling, or increasing spend — get clarity first.
+              One stronger sales quarter can justify this investment.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
