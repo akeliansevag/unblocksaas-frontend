@@ -1,5 +1,6 @@
 import "./globals.css";
 import GoogleAnalytics from "../components/GoogleAnalytics";
+import MetaPixel from "../components/MetaPixel";
 
 export const metadata = {
   title: "Unblocksaas | 3-Day Revenue Diagnostic",
@@ -13,10 +14,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <GoogleAnalytics />
         <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
       </head>
       <body>
-        <GoogleAnalytics />
+        <MetaPixel />
         {children}
       </body>
     </html>
