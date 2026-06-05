@@ -17,7 +17,6 @@ function isValidUrl(url) {
 
 const BOOK_FIT_CALL_EVENT = "book_your_free_fit_call_click";
 const BOOK_FIT_CALL_SESSION_KEY = "unblocksaas_book_fit_call_click_tracked";
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-27K42MVKG8";
 
 function trackBookFitCallClick() {
   if (typeof window === "undefined") {
@@ -46,18 +45,6 @@ function trackBookFitCallClick() {
 
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(eventPayload);
-
-  if (typeof window.gtag === "function") {
-    window.gtag("event", BOOK_FIT_CALL_EVENT, {
-      send_to: GA_MEASUREMENT_ID,
-      event_category: "CTA",
-      event_label: "Book Your Free Fit Call",
-      tracking_action: "Clicks",
-      counting_method: "Unique clicks",
-      page_location: window.location.href,
-      page_path: window.location.pathname,
-    });
-  }
 }
 
 export default function useCalendlyPopup() {
