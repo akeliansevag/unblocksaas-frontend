@@ -15,6 +15,51 @@ function isValidUrl(url) {
   }
 }
 
+const BOOK_FIT_CALL_EVENT = "book_your_free_fit_call_click";
+const BOOK_FIT_CALL_SESSION_KEY = "unblocksaas_book_fit_call_click_tracked";
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-27K42MVKG8";
+
+function trackBookFitCallClick() {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  try {
+    if (window.sessionStorage?.getItem(BOOK_FIT_CALL_SESSION_KEY)) {
+      return;
+    }
+
+    window.sessionStorage?.setItem(BOOK_FIT_CALL_SESSION_KEY, "true");
+  } catch {
+    // If storage is unavailable, still allow the click event to be tracked.
+  }
+
+  const eventPayload = {
+    event: BOOK_FIT_CALL_EVENT,
+    event_name: "Book Your Free Fit Call",
+    tracking_action: "Clicks",
+    counting_method: "Unique clicks",
+    button_text: "Book Your Free Fit Call",
+    page_location: window.location.href,
+    page_path: window.location.pathname,
+  };
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(eventPayload);
+
+  if (typeof window.gtag === "function") {
+    window.gtag("event", BOOK_FIT_CALL_EVENT, {
+      send_to: GA_MEASUREMENT_ID,
+      event_category: "CTA",
+      event_label: "Book Your Free Fit Call",
+      tracking_action: "Clicks",
+      counting_method: "Unique clicks",
+      page_location: window.location.href,
+      page_path: window.location.pathname,
+    });
+  }
+}
+
 export default function useCalendlyPopup() {
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL;
   const [bookingMessage, setBookingMessage] = useState("");
@@ -28,6 +73,7 @@ export default function useCalendlyPopup() {
   const openCalendlyPopup = useCallback(
     (event) => {
       event?.preventDefault();
+      trackBookFitCallClick();
 
       if (!isValidUrl(calendlyUrl)) {
         showFallback("Booking is temporarily unavailable. Please add a valid NEXT_PUBLIC_CALENDLY_URL to enable scheduling.");
