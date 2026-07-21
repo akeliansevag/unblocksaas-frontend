@@ -377,7 +377,7 @@ function Hero({ onBookCall }) {
               <Clock3 className="h-3.5 w-3.5" />
               3-Day Revenue Diagnostic
             </Badge>
-            <h1 className="mt-3 text-[26px] font-bold leading-[1.02] tracking-normal text-ink">
+            <h1 className="mt-5 text-[26px] font-bold leading-[1.02] tracking-normal text-ink">
               Your Pipeline Looks Active
               <span className="mt-1 block text-blue-600">Your Revenue Doesn&apos;t</span>
             </h1>
