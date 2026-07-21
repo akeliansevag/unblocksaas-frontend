@@ -383,24 +383,16 @@ function Hero({ onBookCall }) {
             </h1>
           </div>
 
-          <PricingCard className="order-2 mt-2 sm:hidden" />
-
-          <div className="order-4 sm:hidden">
-            <p className="text-[15px] font-medium leading-6 text-slate-700">
-              Most B2B SaaS teams don&apos;t have an activity problem.
-              <span className="block">They have hidden conversion constraints inside their GTM system.</span>
-            </p>
-            <div className="mt-5">
-              <PrimaryButton className="w-full" href="#book-call" onClick={onBookCall}>
-                Book Your Free Fit Call
-              </PrimaryButton>
-              <div className="mt-3 flex items-start gap-2 text-xs leading-5 text-slate-500">
-                <CalendarDays className="h-4 w-4 shrink-0 text-slate-500" />
-                <p>
-                  No commitment.
-                  <span className="block">20 - 30 minute conversation to assess fit</span>
-                </p>
-              </div>
+          <div className="order-2 mt-2 sm:hidden">
+            <PrimaryButton className="w-full" href="#book-call" onClick={onBookCall}>
+              Book Your Free Fit Call
+            </PrimaryButton>
+            <div className="mt-3 flex items-start gap-2 text-xs leading-5 text-slate-500">
+              <CalendarDays className="h-4 w-4 shrink-0 text-slate-500" />
+              <p>
+                No commitment.
+                <span className="block">20 - 30 minute conversation to assess fit</span>
+              </p>
             </div>
             <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-600">
               {heroChecks.slice(0, 2).map((item, index) => (
@@ -410,6 +402,14 @@ function Hero({ onBookCall }) {
                 </li>
               ))}
             </ul>
+          </div>
+
+          <div className="order-4 sm:hidden">
+            <p className="text-[15px] font-medium leading-6 text-slate-700">
+              Most B2B SaaS teams don&apos;t have an activity problem.
+              <span className="block">They have hidden conversion constraints inside their GTM system.</span>
+            </p>
+            <PricingCard className="mt-5" />
           </div>
 
           <div className="hidden max-w-[630px] sm:order-1 sm:block">
