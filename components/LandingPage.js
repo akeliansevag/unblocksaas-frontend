@@ -239,15 +239,15 @@ function BulletList({ items, tone = "blue", className = "" }) {
 
 function PricingCard({ className = "" }) {
   return (
-    <div className={`flex min-w-0 items-center gap-3 rounded-lg border border-blue-300 bg-blue-50/80 px-3 py-3 shadow-[0_10px_26px_rgba(37,99,235,0.12)] ring-1 ring-blue-100 sm:min-w-[290px] sm:gap-4 sm:px-4 sm:py-4 ${className}`}>
-      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-white text-blue-600 ring-1 ring-blue-200 sm:h-10 sm:w-10">
+    <div className={`flex min-w-0 items-center gap-2.5 rounded-lg border border-blue-300 bg-blue-50/80 px-3 py-2 shadow-[0_10px_26px_rgba(37,99,235,0.12)] ring-1 ring-blue-100 sm:min-w-[290px] sm:gap-4 sm:px-4 sm:py-4 ${className}`}>
+      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-white text-blue-600 ring-1 ring-blue-200 sm:h-10 sm:w-10">
         <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6" />
       </div>
       <div>
-        <p className="text-xs font-medium text-slate-700">Fixed-price diagnostic</p>
-        <p className="text-xl font-semibold leading-tight text-ink sm:text-2xl">USD 2,500</p>
-        <p className="text-[11px] leading-4 text-slate-500 sm:text-xs sm:leading-5">3 focused days</p>
-        <p className="text-[11px] leading-4 text-slate-500 sm:text-xs sm:leading-5">No open-ended consulting scope.</p>
+        <p className="text-[11px] font-medium text-slate-700 sm:text-xs">Fixed-price diagnostic</p>
+        <p className="text-lg font-semibold leading-tight text-ink sm:text-2xl">USD 2,500</p>
+        <p className="text-[10px] leading-[14px] text-slate-500 sm:text-xs sm:leading-5">3 focused days</p>
+        <p className="text-[10px] leading-[14px] text-slate-500 sm:text-xs sm:leading-5">No open-ended consulting scope.</p>
       </div>
     </div>
   );
@@ -369,35 +369,35 @@ function Hero({ onBookCall }) {
   const [videoOpen, setVideoOpen] = useState(false);
 
   return (
-    <section id="top" className="bg-white pb-10 pt-5 sm:pb-14 sm:pt-10 lg:pt-11">
+    <section id="top" className="bg-white pb-5 pt-3 sm:pb-14 sm:pt-10 lg:pt-11">
       <SectionShell>
-        <div className="grid items-start gap-5 sm:gap-10 lg:grid-cols-[1fr_0.94fr] lg:items-center lg:gap-14">
+        <div className="grid items-start gap-3 sm:gap-10 lg:grid-cols-[1fr_0.94fr] lg:items-center lg:gap-14">
           <div className="order-1 sm:hidden">
             <Badge>
               <Clock3 className="h-3.5 w-3.5" />
               3-Day Revenue Diagnostic
             </Badge>
-            <h1 className="mt-4 text-[29px] font-bold leading-[1.05] tracking-normal text-ink">
+            <h1 className="mt-3 text-[26px] font-bold leading-[1.02] tracking-normal text-ink">
               Your Pipeline Looks Active
               <span className="mt-1 block text-blue-600">Your Revenue Doesn&apos;t</span>
             </h1>
           </div>
 
-          <div className="order-2 mt-2 sm:hidden">
-            <PrimaryButton className="w-full" href="#book-call" onClick={onBookCall}>
+          <div className="order-2 sm:hidden">
+            <PrimaryButton className="w-full !py-2.5" href="#book-call" onClick={onBookCall}>
               Book Your Free Fit Call
             </PrimaryButton>
-            <div className="mt-3 flex items-start gap-2 text-xs leading-5 text-slate-500">
+            <div className="mt-2 flex items-start gap-2 text-[11px] leading-4 text-slate-500">
               <CalendarDays className="h-4 w-4 shrink-0 text-slate-500" />
               <p>
                 No commitment.
                 <span className="block">20 - 30 minute conversation to assess fit</span>
               </p>
             </div>
-            <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-600">
+            <ul className="mt-3 space-y-2 text-[13px] leading-5 text-slate-600">
               {heroChecks.slice(0, 2).map((item, index) => (
                 <li key={`${item}-${index}`} className="flex gap-3">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-blue-600" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -405,11 +405,11 @@ function Hero({ onBookCall }) {
           </div>
 
           <div className="order-4 sm:hidden">
-            <p className="text-[15px] font-medium leading-6 text-slate-700">
+            <p className="text-[13px] font-medium leading-5 text-slate-700">
               Most B2B SaaS teams don&apos;t have an activity problem.
-              <span className="block">They have hidden conversion constraints inside their GTM system.</span>
+              <span> They have hidden conversion constraints inside their GTM system.</span>
             </p>
-            <PricingCard className="mt-5" />
+            <PricingCard className="mt-3" />
           </div>
 
           <div className="hidden max-w-[630px] sm:order-1 sm:block">
@@ -459,7 +459,7 @@ function Hero({ onBookCall }) {
               <img
                 src="/images/video-poster-user-attachment.jpg"
                 alt="Video poster"
-                className="h-[185px] w-full object-cover sm:h-auto"
+                className="h-[135px] w-full object-cover sm:h-auto"
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 via-slate-950/35 to-transparent px-3 pb-3 pt-8 text-white sm:px-5 sm:pb-5 sm:pt-20">
                 <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-blue-100 sm:text-xs">
