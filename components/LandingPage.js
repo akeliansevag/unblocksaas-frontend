@@ -191,6 +191,21 @@ function Badge({ children }) {
   );
 }
 
+function DiagnosticTerms() {
+  return (
+    <div className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium leading-4 text-slate-500 sm:text-[13px] sm:leading-5">
+      <span className="inline-flex items-center gap-1.5">
+        <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-blue-500" />
+        3 focused days
+      </span>
+      <span className="inline-flex items-center gap-1.5">
+        <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-blue-500" />
+        No open-ended consulting scope
+      </span>
+    </div>
+  );
+}
+
 function PrimaryButton({ children, href = "#book-call", className = "", onClick }) {
   return (
     <a
@@ -234,22 +249,6 @@ function BulletList({ items, tone = "blue", className = "" }) {
         );
       })}
     </ul>
-  );
-}
-
-function PricingCard({ className = "" }) {
-  return (
-    <div className={`flex min-w-0 items-center gap-2.5 rounded-lg border border-blue-300 bg-blue-50/80 px-3 py-2 shadow-[0_10px_26px_rgba(37,99,235,0.12)] ring-1 ring-blue-100 sm:min-w-[290px] sm:gap-4 sm:px-4 sm:py-4 ${className}`}>
-      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-white text-blue-600 ring-1 ring-blue-200 sm:h-10 sm:w-10">
-        <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6" />
-      </div>
-      <div>
-        <p className="text-[11px] font-medium text-slate-700 sm:text-xs">Fixed-price diagnostic</p>
-        <p className="text-lg font-semibold leading-tight text-ink sm:text-2xl">USD 2,500</p>
-        <p className="text-[10px] leading-[14px] text-slate-500 sm:text-xs sm:leading-5">3 focused days</p>
-        <p className="text-[10px] leading-[14px] text-slate-500 sm:text-xs sm:leading-5">No open-ended consulting scope.</p>
-      </div>
-    </div>
   );
 }
 
@@ -377,8 +376,8 @@ function Hero({ onBookCall }) {
               <Clock3 className="h-3.5 w-3.5" />
               3-Day Revenue Diagnostic
             </Badge>
-            <PricingCard className="mt-3" />
-            <h1 className="mt-7 text-[26px] font-bold leading-[1.02] tracking-normal text-ink">
+            <DiagnosticTerms />
+            <h1 className="mt-6 text-[26px] font-bold leading-[1.02] tracking-normal text-ink">
               Your Pipeline Looks Active
               <span className="mt-1 block text-blue-600">Your Revenue Doesn&apos;t</span>
             </h1>
@@ -417,7 +416,8 @@ function Hero({ onBookCall }) {
               <Clock3 className="h-3.5 w-3.5" />
               3-Day Revenue Diagnostic
             </Badge>
-            <h1 className="mt-8 text-4xl font-bold leading-[1.08] tracking-normal text-ink sm:text-5xl lg:text-[42px] xl:text-[44px]">
+            <DiagnosticTerms />
+            <h1 className="mt-6 text-4xl font-bold leading-[1.08] tracking-normal text-ink sm:text-5xl lg:text-[42px] xl:text-[44px]">
               Your Pipeline Looks Active
               <span className="block text-blue-600 mt-2">Your Revenue Doesn&apos;t</span>
             </h1>
@@ -433,8 +433,7 @@ function Hero({ onBookCall }) {
                 </li>
               ))}
             </ul>
-            <div className="mt-9 flex flex-col gap-5 sm:flex-row sm:items-center">
-              <PricingCard className="hidden sm:flex" />
+            <div className="mt-9">
               <div>
                 <PrimaryButton className="w-full sm:w-auto" href="#book-call" onClick={onBookCall}>
                   Book Your Free Fit Call
