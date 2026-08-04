@@ -377,7 +377,7 @@ function Hero({ onBookCall }) {
               3-Day Revenue Diagnostic
             </Badge>
             <DiagnosticTerms />
-            <h1 className="mt-6 text-[26px] font-bold leading-[1.02] tracking-normal text-ink">
+            <h1 className="mt-8 text-[26px] font-bold leading-[1.02] tracking-normal text-ink">
               Your Pipeline Looks Active
               <span className="mt-1 block text-blue-600">Your Revenue Doesn&apos;t</span>
             </h1>
@@ -448,7 +448,7 @@ function Hero({ onBookCall }) {
               </div>
             </div>
           </div>
-          <div className="order-3 pt-0 sm:order-2 lg:pt-0">
+          <div className="order-3 mt-2 pt-0 sm:order-2 sm:mt-0 lg:pt-0">
             <button
               type="button"
               onClick={() => setVideoOpen(true)}
@@ -458,7 +458,7 @@ function Hero({ onBookCall }) {
               <img
                 src="/images/video-poster-user-attachment.jpg"
                 alt="Video poster"
-                className="h-[135px] w-full object-cover sm:h-auto"
+                className="h-[155px] w-full object-cover sm:h-auto"
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/80 via-slate-950/35 to-transparent px-3 pb-3 pt-8 text-white sm:px-5 sm:pb-5 sm:pt-20">
                 <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-blue-100 sm:text-xs">
