@@ -377,7 +377,8 @@ function Hero({ onBookCall }) {
               <Clock3 className="h-3.5 w-3.5" />
               3-Day Revenue Diagnostic
             </Badge>
-            <h1 className="mt-5 text-[26px] font-bold leading-[1.02] tracking-normal text-ink">
+            <PricingCard className="mt-3" />
+            <h1 className="mt-7 text-[26px] font-bold leading-[1.02] tracking-normal text-ink">
               Your Pipeline Looks Active
               <span className="mt-1 block text-blue-600">Your Revenue Doesn&apos;t</span>
             </h1>
@@ -409,7 +410,6 @@ function Hero({ onBookCall }) {
               Most B2B SaaS teams don&apos;t have an activity problem.
               <span> They have hidden conversion constraints inside their GTM system.</span>
             </p>
-            <PricingCard className="mt-3" />
           </div>
 
           <div className="hidden max-w-[630px] sm:order-1 sm:block">
