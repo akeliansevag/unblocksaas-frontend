@@ -892,7 +892,7 @@ function FinalCTA({ bookingMessage, onBookCall }) {
           </div>
           <div className="text-left lg:text-center lg:ms-auto">
             <PrimaryButton className="w-full max-w-[280px] bg-blue-500 py-4 text-base hover:bg-blue-400" href="#book-call" onClick={onBookCall}>
-              Book Your Free Fit Call
+              Book Your Free Conversion Review
             </PrimaryButton>
             {bookingMessage ? (
               <p className="mx-auto mt-4 max-w-[320px] rounded-lg border border-blue-300/30 bg-white/10 px-4 py-3 text-sm font-semibold leading-5 text-blue-50">
@@ -902,7 +902,7 @@ function FinalCTA({ bookingMessage, onBookCall }) {
             <p className="mt-5 text-sm font-medium text-white">No pressure. No obligation.</p>
             <p className="mt-2 flex items-center gap-2 text-sm text-blue-100 lg:justify-center">
               <Star className="h-4 w-4 text-blue-400" />
-              20 - 30 minute diagnostic call
+              30 minute Conversion Review
             </p>
           </div>
         </div>
