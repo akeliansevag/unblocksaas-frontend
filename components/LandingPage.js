@@ -390,7 +390,7 @@ function Hero({ onBookCall }) {
             <div className="mt-2 flex items-start gap-2 text-[11px] leading-4 text-slate-500">
               <CalendarDays className="h-4 w-4 shrink-0 text-slate-500" />
               <p>
-                No commitment • 30 minutes • 15+ years Of Conversion & GTM Expertise
+                No commitment • 30 minutes • 15+ years Of GTM Expertise
               </p>
             </div>
             <ul className="mt-3 space-y-2 text-[13px] leading-5 text-slate-600">
