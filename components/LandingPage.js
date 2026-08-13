@@ -385,13 +385,12 @@ function Hero({ onBookCall }) {
 
           <div className="order-2 sm:hidden">
             <PrimaryButton className="w-full !py-2.5" href="#book-call" onClick={onBookCall}>
-              Book Your Free Conversation Review
+              Book Your Free Conversion Review
             </PrimaryButton>
             <div className="mt-2 flex items-start gap-2 text-[11px] leading-4 text-slate-500">
               <CalendarDays className="h-4 w-4 shrink-0 text-slate-500" />
               <p>
-                No commitment.
-                <span className="block">20 - 30 minute conversation to assess fit</span>
+                No commitment • 30 minutes • 15+ years Of Conversion & GTM Expertise
               </p>
             </div>
             <ul className="mt-3 space-y-2 text-[13px] leading-5 text-slate-600">
